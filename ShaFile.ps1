@@ -1,4 +1,13 @@
-function Get-FileSHA1 ($filePath) {
+function Get-FileSHA1 {
+
+    param(
+        [Parameter(
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = "FullName",
+            Mandatory = $true
+        )]
+        [String] $filePath
+    )
 
     begin {
         $sha1 = New-Object System.Security.Cryptography.SHA1Managed
