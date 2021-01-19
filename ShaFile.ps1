@@ -16,12 +16,3 @@ function Get-FileSHA1 ($filePath) {
     $prettyHashSB.ToString()
 
 }
-
-$arquivo = "C:\ACELERA DEVS\62-PowerShell parte 2 Sessões, Jobs e Administração Remota\curso-alura-powershell-parte-2-sessoes-jobs-e-administracao-remota\ShaFile.ps1"
-$hashDoArquivo = Get-FileSHA1 $arquivo
-
-Write-Host "O hash do arquivo $arquivo é $hashDoArquivo" -BackgroundColor Red -ForegroundColor Yellow
-
-function Get-FileSHA256() {}
-function Get-FileSHA384() {}
-function Get-FileSHA512() {}
