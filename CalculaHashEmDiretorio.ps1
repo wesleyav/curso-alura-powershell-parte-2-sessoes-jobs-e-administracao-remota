@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 
 $arquivos = Get-ChildItem $diretorio -File
 
-foreach ($item in $arquivos | Select-Object FullName) {
+foreach ($item in $arquivos.FullName) {
     $hashItem = Get-FileSHA1 $item
     Write-Host "O Hash do arquivo $item é $hashItem !"
 }
