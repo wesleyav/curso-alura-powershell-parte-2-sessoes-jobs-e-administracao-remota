@@ -5,12 +5,13 @@ function Add-ApplicationPool {
     )
 
     $ComputersName | ForEach-Object {
-        Enter-PSSession -ComputerName $_
-        "Estamos executando os comandos no computador: $env:COMPUTERNAME"
-        $appCmdArgs = "add apppool /name: $ApplicationPoolName /managedRuntimeVersion:v4.0 /managedPipelineMode:Integrated"
-        C:Windows\System32\inetsrv\appcmd.exe $appCmdArgs
+        $session = New-PSSession -ComputerName $_
 
-        Exit-PSSession
+        Invoke-Command -Session $session -ScriptBlock {
+            "Estamos executando os comandos no computador: $env:COMPUTERNAME"
+            $appCmdArgs = "add apppool /name:$(args[0]) /managedRuntimeVersion:v4.0 /managedPipelineMode:Integrated"
+            C:Windows\System32\inetsrv\appcmd.exe $appCmdArgs.Split(' ')
+
+        } -ArgumentList $ApplicationPoolName
     }
-    
 }
