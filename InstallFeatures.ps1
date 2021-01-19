@@ -13,7 +13,7 @@ function Install-WindowsFeaturesInServers {
     }
 
     $computers | ForEach-Object {
-        Start-Job -ScriptBlock $jobScriptBlock -ArgumentList ($_, $featureName)
+        Start-Job -Name "JOB_$_" -ScriptBlock $jobScriptBlock -ArgumentList ($_, $featureName)
     }
     
 }
