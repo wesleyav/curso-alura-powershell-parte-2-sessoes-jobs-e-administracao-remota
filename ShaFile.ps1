@@ -4,6 +4,12 @@ function Get-FileSHA1 ($filePath) {
 
     $sha1 = New-Object System.Security.Cryptography.SHA1Managed
 
+    $prettyHashSB = New-Object System.Text.StringBuilder
+    foreach ($byte in $hash) {
+        $hexaNotation = $byte.ToString("X2")
+        $prettyHashSB.Append($hexaNotation)
+    }
+
     $hash = $sha1.ComputeHash($fileBytes)
     Write-Host $hash -BackgroundColor Red -ForegroundColor Yellow
 }
